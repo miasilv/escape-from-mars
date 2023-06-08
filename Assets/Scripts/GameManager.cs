@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject pauseScreen;
     [SerializeField] GameObject startScreen;
     [SerializeField] GameObject settingsInfo;
+    [SerializeField] GameObject overlay;
 
 
     // -------------------- Spawning variabls -------------------------
@@ -84,6 +85,7 @@ public class GameManager : MonoBehaviour
     public void LoadStartScreen() {
         playing = false;
         startScreen.gameObject.SetActive(true);
+        overlay.gameObject.SetActive(true);
         settingsInfo.gameObject.SetActive(true);
         player = GameObject.Find("Player");
         player.transform.position = playerStartPos;
@@ -114,6 +116,7 @@ public class GameManager : MonoBehaviour
         pauseScreen.gameObject.SetActive(false);
         startScreen.gameObject.SetActive(false);
         settingsInfo.gameObject.SetActive(false);
+        overlay.gameObject.SetActive(false);
         
         energyAmountSlider.gameObject.SetActive(true);
         toolCount.gameObject.SetActive(true);
@@ -127,6 +130,7 @@ public class GameManager : MonoBehaviour
         musicSource.Pause();
         playing = false;
         gameOverScreen.gameObject.SetActive(true);
+        overlay.gameObject.SetActive(true);
         foreach(GameObject powerup in GameObject.FindGameObjectsWithTag("Powerup")) {
             Destroy(powerup);
         }
@@ -144,6 +148,7 @@ public class GameManager : MonoBehaviour
             Time.timeScale = paused ? 0 : 1; 
             pauseScreen.gameObject.SetActive(paused);
             settingsInfo.gameObject.SetActive(paused);
+            overlay.gameObject.SetActive(paused);
         }
     }
 

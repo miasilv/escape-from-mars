@@ -75,9 +75,9 @@ public class PlayerController : MonoBehaviour {
     }
 
     IEnumerator Die() {
-        anim.SetTrigger("Surprise");
-        yield return new WaitForSeconds(1.2f);
         gameManager.GameOver();
+        anim.SetTrigger("Surprise");
+        yield return new WaitForSeconds(1);
         gameObject.SetActive(false);
     }
 }

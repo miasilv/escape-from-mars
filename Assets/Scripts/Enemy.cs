@@ -55,6 +55,7 @@ public class Enemy : MonoBehaviour {
     IEnumerator Die() {
         anim.SetTrigger("Die");
         moving = false;
+        GetComponent<BoxCollider>().enabled = false;
         yield return new WaitForSeconds(1.16f);
         Destroy(gameObject);
     }

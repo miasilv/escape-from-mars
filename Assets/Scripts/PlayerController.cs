@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     private Animator anim;
+    private GameManager gameManager;
 
+    // movement variables
     private float speed = 10.0f;
     private float rotationSpeed = 100.0f;
     private float xBound = 25.0f;
@@ -13,11 +15,24 @@ public class PlayerController : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
 		anim = gameObject.GetComponentInChildren<Animator>();
+        gameManager = GameManager.Instance;
     }
 
     // Update is called once per frame
     void Update() {
-        MovePlayer();
+        if (gameManager.playing) {
+            MovePlayer();
+        } else {
+            anim.SetInteger("AnimationPar", 0);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            gameManager.TogglePause();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Return)) {
+            gameManager.ShootRay();
+        }
     }
 
     // Move the player
@@ -55,7 +70,14 @@ public class PlayerController : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
         Debug.Log("Player collided with " + other.name);
         if (other.gameObject.CompareTag("Enemy")) {
-            Debug.Log("Player has collided with an enemy");
+            StartCoroutine(Die());
         }
+    }
+
+    IEnumerator Die() {
+        anim.SetTrigger("Surprise");
+        yield return new WaitForSeconds(1.2f);
+        gameManager.GameOver();
+        gameObject.SetActive(false);
     }
 }

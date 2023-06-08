@@ -6,12 +6,13 @@ public enum PowerupType {Energy, Tool};
 
 public class Powerup : MonoBehaviour {
     
-    public PowerupType type;
-    public ParticleSystem explosionParticles;
+    [SerializeField] PowerupType type;
+    [SerializeField] ParticleSystem explosionParticles;
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start() {
-        
+        gameManager = GameManager.Instance; 
     }
 
     // Update is called once per frame
@@ -25,6 +26,7 @@ public class Powerup : MonoBehaviour {
             Debug.Log("Player has collided with a " + type);
             Instantiate(explosionParticles, transform.position, explosionParticles.transform.rotation);
             Destroy(gameObject);
+            gameManager.Powerup(type);
         }
     }
 }

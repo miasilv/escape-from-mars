@@ -8,6 +8,10 @@ TagManager:
   - Powerup
   - Focal Point
   - Camera
+  - GameManager
+  - SoundEffectsSource
+  - MusicSource
+  - EnergyBeam
   layers:
   - Default
   - TransparentFX

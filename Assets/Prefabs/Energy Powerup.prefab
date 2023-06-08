@@ -114,6 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   explosionParticles: {fileID: 4278965626653237118, guid: 18bf449f3280d3a46894424152b0f571, type: 3}
+  powerupAudioClip: {fileID: 322704267082711030, guid: 2e986841b0af37541af094f493d73259, type: 3}
 --- !u!1001 &2818631163743949061
 PrefabInstance:
   m_ObjectHideFlags: 0
